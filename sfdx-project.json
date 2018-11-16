@@ -6,6 +6,6 @@
     }
   ],
   "namespace": "",
-  "sfdcLoginUrl": "https://ap4.lightning.force.com/",
+  "sfdcLoginUrl": "https://login.salesforce.com/",
   "sourceApiVersion": "40.0"
 }
