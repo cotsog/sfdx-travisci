@@ -20,7 +20,7 @@ before_install:
 - export PATH=./sfdx/$(pwd):$PATH
 - sfdx --version
 - sfdx plugins --core
-- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key --username $USERNAME --setdefaultdevhubusername -a DevHub
+- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key --username $USERNAME --setdefaultdevhubusername -a "Dev Hub Org"
 script:
 - sfdx force:org:list
-- sfdx force:org:create -v DevHub -s -f config/project-scratch-def.json -a ciorg
+- sfdx force:org:create -v "Dev Hub Org" -s -f config/project-scratch-def.json -a ciorg
