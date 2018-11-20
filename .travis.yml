@@ -23,4 +23,4 @@ before_install:
 - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key --username $USERNAME --setdefaultdevhubusername -a DevHub
 script:
 - sfdx force:org:list
-- sfdx force:org:create -v DevHub -s -f config/project-scratch-def.json -a ciorg --wait 2
+- sfdx force:org:create -v DevHub -s -f config/project-scratch-def.json -a ciorg --wait 10
