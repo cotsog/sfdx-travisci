@@ -15,3 +15,8 @@ before_install:
 - export SFDX_LOG_LEVEL=DEBUG
 - npm install --global sfdx-cli@6.34
 - sfdx --version
+- sfdx plugins --core
+- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key --username $USERNAME --setdefaultdevhubusername -a "Dev Hub Org"
+script:
+- sfdx force:org:list
+- sfdx force:org:create -v "Dev Hub Org" -s -f config/project-scratch-def.json -a ciorg
