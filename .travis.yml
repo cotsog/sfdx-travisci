@@ -16,13 +16,11 @@ before_install:
 - export SFDX_LOG_LEVEL=DEBUG
 - mkdir sfdx
 - wget -qO- $URL | tar xJ -C sfdx --strip-components 1
-- sudo ./sfdx/install
+- ./sfdx/install
 - export PATH=./sfdx/$(pwd):$PATH
 - sfdx --version
 - sfdx plugins --core
-- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key
-  --username $USERNAME --setdefaultdevhubusername -a DevHub
+- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key --username $USERNAME --setdefaultdevhubusername -a DevHub
 script:
 - sfdx force:org:list
-- sfdx force:org:create -v DevHub -s -f config/project-scratch-def.json -a ciorg
-
+- sfdx force:org:create -v DevHub -s -f config/project-scratch-def.json -a ciorg --wait 2
