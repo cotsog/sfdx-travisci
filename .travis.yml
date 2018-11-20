@@ -1,26 +1,17 @@
 sudo: true
-os: trusty
+os: linux
+dist: trusty
 cache: false
-env:
-- URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
 before_install: 
 - unset CI 
 - unset TRAVIS 
 - unset CONTINUOUS_INTEGRATION
 - openssl aes-256-cbc -K $encrypted_a3481bb39d30_key -iv $encrypted_a3481bb39d30_iv
   -in Certificate/server.key.enc -out Certificate/server.key -d
-- export SFDX_AUTOUPDATE_DISABLE=false
+- export SFDX_AUTOUPDATE_DISABLE=true
 - export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
 - export SFDX_DOMAIN_RETRY=300
 - export SFDX_DISABLE_APP_HUB=true
 - export SFDX_LOG_LEVEL=DEBUG
-- mkdir sfdx
-- wget -qO- $URL | tar xJ -C sfdx --strip-components 1
-- ./sfdx/install
-- export PATH=./sfdx/$(pwd):$PATH
+- npm install --global sfdx-cli@6.34
 - sfdx --version
-- sfdx plugins --core
-- sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile Certificate/server.key --username $USERNAME --setdefaultdevhubusername -a "Dev Hub Org"
-script:
-- sfdx force:org:list
-- sfdx force:org:create -v "Dev Hub Org" -s -f config/project-scratch-def.json -a ciorg
